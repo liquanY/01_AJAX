@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX最基本的代码</title>
+</head>
+<body>
+<script>
+    // 涉及到 AJAX操作的页面 不能使用文件协议访问(文件的方式访问)
+    // 也就是不能通过找到这个文件双击运行 要用开发软件打开
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "dataDemo");
+
+    xhr.send();
+
+</script>
+</body>
+</html>

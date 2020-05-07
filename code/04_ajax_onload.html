@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onload</title>
+</head>
+<body>
+<script>
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "dataDemo");
+
+    xhr.send();
+
+    // onload 是 HTML5 中提供的
+    // 只有在readyState 为4的时候才会进入
+    xhr.onload = function () {
+        console.log(this.readyState);
+        console.log(this.responseText);
+    }
+</script>
+</body>
+</html>
