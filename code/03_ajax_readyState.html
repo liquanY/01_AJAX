@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>readyState</title>
+</head>
+<body>
+<script>
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "dataDemo");
+
+    xhr.send();
+
+    xhr.onreadystatechange = function () {
+        switch (this.readyState) {
+            case 2:
+                // 已经接收到了响应报文的响应头
+                console.log(this.getAllResponseHeaders()); // 输出所有
+                console.log(this.getResponseHeader("server")); // 输出一个
+                console.log(this.responseText);
+                break;
+            case 3:
+                // 正在下载响应报文的响应体
+                console.log(this.responseText);
+                break;
+            case 4:
+                // 整个响应报文已经完整的下载下来了
+                console.log(this.responseText);
+                break;
+        }
+    }
+</script>
+</body>
+</html>
