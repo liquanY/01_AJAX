@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX发送GET请求</title>
+</head>
+<body>
+<ul id="list"></ul>
+<script>
+    var listElement = document.getElementById("list");
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "dataDemo2");
+
+    xhr.send();
+
+    xhr.onreadystatechange = function () {
+        if (this.readyState != 4) {
+            return;
+        }
+        var data = JSON.parse(this.responseText);
+        for (var i = 0; i < data.length; i++) {
+            var liElement = document.createElement("li");
+            liElement.innerHTML = data[i].name;
+            listElement.appendChild(liElement);
+        }
+    }
+
+</script>
+</body>
+</html>

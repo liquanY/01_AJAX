@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>async</title>
+</head>
+<body>
+<script>
+    // console.time() 和 console.timeEnd() 记录时长
+//    console.time("timer");
+//    for (var i = 0; i < 100000; i++) {
+//    }
+//    console.timeEnd("timer");
+
+    // 计时开始
+    console.time("timer");
+    var xhr = new XMLHttpRequest();
+    // open方法的第三个参数 代表同步还是异步 默认是true 异步
+    // 同步基本上不用了 而且耗时比异步长很多
+    xhr.open("GET", "dataDemo", true);
+    xhr.send();
+    // 计时结束
+    console.timeEnd("timer");
+</script>
+</body>
+</html>
