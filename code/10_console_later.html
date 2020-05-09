@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>console的展开显示数据</title>
+</head>
+<body>
+<script>
+    var obj = {
+        name: "liquan"
+    };
+
+    console.log(obj);
+
+    setTimeout(function () {
+        obj.name = "otherName";
+        console.log(obj);
+    }, 2000)
+</script>
+</body>
+</html>
