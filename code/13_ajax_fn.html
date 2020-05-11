@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>封装</title>
+</head>
+<body>
+<script>
+    function ajax(method, url, params, fn) {
+        // 发送方式支持大小写
+        method = method.toUpperCase();
+
+        var xhr = new XMLHttpRequest();
+
+        // 参数支持js对象
+        if (typeof params == "object") {
+            var tempArr = [];
+            for (var key in params) {
+                var value = params[key];
+                tempArr.push(key + "=" + value);
+            }
+            params = tempArr.join("&");
+        }
+
+        if (method == "GET") {
+            url += "?" + params;
+        }
+
+        xhr.open(method, url);
+
+        var data = null;
+        if (method == "POST") {
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            data = params;
+        }
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState != 4) {
+                return;
+            }
+            fn(this.responseText);
+        };
+
+        xhr.send(data);
+    }
+
+    var callbackFunction = function (data) {
+        console.log("开始操作");
+        console.log(data);
+        console.log("操作完了");
+    }
+
+    ajax("get", "dataDemo", {"name": "liquan"}, callbackFunction);
+
+</script>
+</body>
+</html>

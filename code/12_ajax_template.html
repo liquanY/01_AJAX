@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态渲染</title>
+</head>
+<body>
+<table id="demo"></table>
+
+<!--
+    script 标签的特点
+    1. innerHTML 永远不会显示在界面上
+    2. 如果 type 不是 text/javascript 里面的内容不会当js解析
+ -->
+<script id="tepl" type="text/x-art-template">
+    {{each data}}
+    <tr>
+        <td>姓名</td>
+        <td>{{$value.name}}</td>
+        <td>年龄</td>
+        <td>{{$value.age}}</td>
+    </tr>
+    {{/each}}
+</script>
+<script src="template-web.js"></script>
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "dataDemo2");
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (this.readyState != 4) {
+            return;
+        }
+        var resultData = JSON.parse(this.responseText);
+
+        // 处理模版数据
+        var content = {data: resultData};
+        var html = template("tepl", content);
+
+        demo.innerHTML = html;
+    };
+</script>
+</body>
+</html>
