@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery中的ajax</title>
+</head>
+<body>
+<script src="jquery1.12.4.js"></script>
+<script>
+    $.ajax({
+        url: "dataDemo", // 请求url
+        type: "get", // 请求方式
+        data: {"username": "liquan"}, // 提交到服务器的参数
+//        dataType: "json", // 设置响应体的类型
+        beforeSend: function (xhr) {
+            // 在所有发送请求的操作之前执行
+            console.log("beforeSend", xhr);
+        },
+        success: function (res) {
+            console.log("success", res);
+        },
+        error: function (xhr) {
+            console.log("error", xhr);
+        },
+        complete: function (xhr) {
+            // 完成请求后 都会执行这个
+            console.log("complete",xhr)
+        }
+    })
+</script>
+</body>
+</html>
